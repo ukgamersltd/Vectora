@@ -1,0 +1,72 @@
+name: Import delivered Vectora source
+
+on:
+  push:
+    branches: [main]
+    paths: ['.bootstrap/ready']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vectora-source-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Restore the checksum-verified source archive
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const crypto = require('node:crypto');
+          const zlib = require('node:zlib');
+          const parts = fs.readdirSync('.bootstrap').filter(n => /^source-\d{2}\.part$/.test(n)).sort();
+          if (parts.length !== 9) throw new Error('Incomplete source transfer');
+          const data = Buffer.concat(parts.map(n => fs.readFileSync(path.join('.bootstrap', n))));
+          const expected = '1ed32a55a84641b6dc508e31c8aed7bd28ec889dadb21fcd92ce40d119881ae7';
+          if (crypto.createHash('sha256').update(data).digest('hex') !== expected) throw new Error('Source checksum mismatch');
+          fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'vectora-source.tar'), zlib.brotliDecompressSync(data));
+          NODE
+          python3 <<'PY'
+          import os, tarfile
+          from pathlib import PurePosixPath
+          archive = os.path.join(os.environ['RUNNER_TEMP'], 'vectora-source.tar')
+          allowed = {'.gitignore', 'LICENSE', 'README.md', 'TESTING.md', 'index.html', 'package.json', 'serve.py', 'styles.css', 'src', 'tests', 'tools'}
+          with tarfile.open(archive) as source:
+              members = source.getmembers()
+              if len(members) != 27:
+                  raise RuntimeError('Unexpected source file count')
+              for member in members:
+                  name = PurePosixPath(member.name)
+                  if not member.isfile() or name.is_absolute() or '..' in name.parts or name.parts[0] not in allowed:
+                      raise RuntimeError('Unsafe archive member: ' + member.name)
+              source.extractall('.', members=members, filter='data')
+          PY
+      - name: Validate source and reproduce the delivered standalone app
+        run: |
+          npm test
+          python3 tools/build.py
+          echo '3e810a405bcc943d0a401b0623fdf387b8808d4a15aaa44ed6cba91e14bbd63f  dist/Vectora.html' | sha256sum --check
+      - name: Commit restored source and standalone distribution
+        run: |
+          rm -rf .bootstrap
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add --all
+          git diff --cached --quiet && exit 0
+          git commit -m 'feat: add Vectora 0.1 vector editor, WebGPU core, tests and standalone app'
+          git push origin HEAD:main

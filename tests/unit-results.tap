@@ -1,0 +1,250 @@
+TAP version 13
+# Subtest: versioned document validates and clones
+ok 1 - versioned document validates and clones
+  ---
+  duration_ms: 2.342773
+  type: 'test'
+  ...
+# Subtest: document rejects unsupported versions
+ok 2 - document rejects unsupported versions
+  ---
+  duration_ms: 0.255957
+  type: 'test'
+  ...
+# Subtest: document rejects nonfinite transforms
+ok 3 - document rejects nonfinite transforms
+  ---
+  duration_ms: 1.658028
+  type: 'test'
+  ...
+# Subtest: document rejects external images
+ok 4 - document rejects external images
+  ---
+  duration_ms: 0.304651
+  type: 'test'
+  ...
+# Subtest: undo redo whole transaction
+ok 5 - undo redo whole transaction
+  ---
+  duration_ms: 1.138782
+  type: 'test'
+  ...
+# Subtest: gesture coalesces to one history entry
+ok 6 - gesture coalesces to one history entry
+  ---
+  duration_ms: 0.285933
+  type: 'test'
+  ...
+# Subtest: no-op creates no history entry
+ok 7 - no-op creates no history entry
+  ---
+  duration_ms: 0.139741
+  type: 'test'
+  ...
+# Subtest: new change truncates redo branch
+ok 8 - new change truncates redo branch
+  ---
+  duration_ms: 1.569955
+  type: 'test'
+  ...
+# Subtest: failed mutation rolls back
+ok 9 - failed mutation rolls back
+  ---
+  duration_ms: 0.466436
+  type: 'test'
+  ...
+# Subtest: duplicate preserves group relationships with new group IDs
+ok 10 - duplicate preserves group relationships with new group IDs
+  ---
+  duration_ms: 0.987484
+  type: 'test'
+  ...
+# Subtest: locked nodes cannot be deleted
+ok 11 - locked nodes cannot be deleted
+  ---
+  duration_ms: 0.240623
+  type: 'test'
+  ...
+# Subtest: single node align uses active artboard
+ok 12 - single node align uses active artboard
+  ---
+  duration_ms: 0.757976
+  type: 'test'
+  ...
+# Subtest: history evicts old entries at configured count
+ok 13 - history evicts old entries at configured count
+  ---
+  duration_ms: 0.2315
+  type: 'test'
+  ...
+# Subtest: native document rejects CSS URL paint
+ok 14 - native document rejects CSS URL paint
+  ---
+  duration_ms: 0.14557
+  type: 'test'
+  ...
+# Subtest: native document rejects CSS declaration injection
+ok 15 - native document rejects CSS declaration injection
+  ---
+  duration_ms: 0.134013
+  type: 'test'
+  ...
+# Subtest: native document rejects unsafe gradient paint
+ok 16 - native document rejects unsafe gradient paint
+  ---
+  duration_ms: 0.137889
+  type: 'test'
+  ...
+# Subtest: node factory enforces requested type over copied source
+ok 17 - node factory enforces requested type over copied source
+  ---
+  duration_ms: 0.09276
+  type: 'test'
+  ...
+# Subtest: store Pathfinder creates a path rather than retaining primitive type
+ok 18 - store Pathfinder creates a path rather than retaining primitive type
+  ---
+  duration_ms: 1.504505
+  type: 'test'
+  ...
+# Subtest: affine composition and inversion
+ok 19 - affine composition and inversion
+  ---
+  duration_ms: 1.85784
+  type: 'test'
+  ...
+# Subtest: rectangle tessellation area
+ok 20 - rectangle tessellation area
+  ---
+  duration_ms: 0.466886
+  type: 'test'
+  ...
+# Subtest: concave contour area
+ok 21 - concave contour area
+  ---
+  duration_ms: 0.276148
+  type: 'test'
+  ...
+# Subtest: nonzero hole orientation
+ok 22 - nonzero hole orientation
+  ---
+  duration_ms: 0.251761
+  type: 'test'
+  ...
+# Subtest: evenodd ignores hole orientation
+ok 23 - evenodd ignores hole orientation
+  ---
+  duration_ms: 0.138509
+  type: 'test'
+  ...
+# Subtest: self-intersecting bowtie
+ok 24 - self-intersecting bowtie
+  ---
+  duration_ms: 0.700039
+  type: 'test'
+  ...
+# Subtest: all SVG commands and arc endpoints
+ok 25 - all SVG commands and arc endpoints
+  ---
+  duration_ms: 0.507558
+  type: 'test'
+  ...
+# Subtest: SVG scientific notation
+ok 26 - SVG scientific notation
+  ---
+  duration_ms: 0.121474
+  type: 'test'
+  ...
+# Subtest: path round trip preserves cubic data
+ok 27 - path round trip preserves cubic data
+  ---
+  duration_ms: 0.418342
+  type: 'test'
+  ...
+# Subtest: adaptive flattening becomes finer
+ok 28 - adaptive flattening becomes finer
+  ---
+  duration_ms: 1.38787
+  type: 'test'
+  ...
+# Subtest: boolean union
+ok 29 - boolean union
+  ---
+  duration_ms: 0.995205
+  type: 'test'
+  ...
+# Subtest: boolean intersect
+ok 30 - boolean intersect
+  ---
+  duration_ms: 0.305983
+  type: 'test'
+  ...
+# Subtest: boolean subtract
+ok 31 - boolean subtract
+  ---
+  duration_ms: 0.188195
+  type: 'test'
+  ...
+# Subtest: boolean xor
+ok 32 - boolean xor
+  ---
+  duration_ms: 0.785719
+  type: 'test'
+  ...
+# Subtest: boolean subtract creates a hole
+ok 33 - boolean subtract creates a hole
+  ---
+  duration_ms: 0.236407
+  type: 'test'
+  ...
+# Subtest: boolean identical contours
+ok 34 - boolean identical contours
+  ---
+  duration_ms: 0.332933
+  type: 'test'
+  ...
+# Subtest: butt stroke area
+ok 35 - butt stroke area
+  ---
+  duration_ms: 0.275977
+  type: 'test'
+  ...
+# Subtest: square stroke area
+ok 36 - square stroke area
+  ---
+  duration_ms: 0.090587
+  type: 'test'
+  ...
+# Subtest: stroke joins do not overlap in final mesh
+ok 37 - stroke joins do not overlap in final mesh
+  ---
+  duration_ms: 0.122575
+  type: 'test'
+  ...
+# Subtest: BVH spatial query
+ok 38 - BVH spatial query
+  ---
+  duration_ms: 1.093223
+  type: 'test'
+  ...
+# Subtest: malformed SVG is rejected
+ok 39 - malformed SVG is rejected
+  ---
+  duration_ms: 0.219993
+  type: 'test'
+  ...
+# Subtest: de Casteljau split agrees with original cubic
+ok 40 - de Casteljau split agrees with original cubic
+  ---
+  duration_ms: 0.188976
+  type: 'test'
+  ...
+1..40
+# tests 40
+# suites 0
+# pass 40
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 67.535713

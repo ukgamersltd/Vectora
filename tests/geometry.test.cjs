@@ -1,0 +1,22 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');require('../src/geometry.js');const G=globalThis.V;
+function area(mesh){let a=0;for(let i=0;i<mesh.length;i+=6)a+=Math.abs((mesh[i+2]-mesh[i])*(mesh[i+5]-mesh[i+1])-(mesh[i+3]-mesh[i+1])*(mesh[i+4]-mesh[i]))/2;return a;}
+const rect=(x,y,w,h)=>[{closed:true,points:[[x,y],[x+w,y],[x+w,y+h],[x,y+h]].map(([x,y])=>G.anchor(x,y))}];
+test('affine composition and inversion',()=>{const m=G.matrix(G.translate(40,-12),G.matrix(G.rotate(.75),G.scale(2,3)));const p=G.pt(7,13),q=G.transform(G.inverse(m),G.transform(m,p));assert.ok(G.dist(p,q)<1e-10);assert.equal(G.inverse([0,0,0,0,0,0]),null);});
+test('rectangle tessellation area',()=>assert.equal(area(G.tessellate(rect(0,0,100,80))),8000));
+test('concave contour area',()=>assert.equal(area(G.tessellate([{closed:true,points:[[0,0],[10,0],[10,5],[5,5],[5,10],[0,10]].map(([x,y])=>G.pt(x,y))}])),75));
+test('nonzero hole orientation',()=>{let a=rect(0,0,100,100),b=rect(20,20,60,60);b[0].points.reverse();assert.equal(area(G.tessellate([...a,...b])),6400);});
+test('evenodd ignores hole orientation',()=>assert.equal(area(G.tessellate([...rect(0,0,100,100),...rect(20,20,60,60)],'evenodd')),6400));
+test('self-intersecting bowtie',()=>assert.equal(area(G.tessellate(G.parsePath('M0 0L10 10L0 10L10 0Z'),'evenodd')),50));
+test('all SVG commands and arc endpoints',()=>{let p=G.parsePath('M0 0h10v10l-10 0z M20 20Q30 0 40 20T60 20C70 0 80 0 90 20S110 40 120 20A20 10 30 0 1 160 20');assert.equal(p.length,2);assert.equal(p[0].closed,true);assert.ok(G.dist(p[1].points.at(-1),G.pt(160,20))<1e-8);});
+test('SVG scientific notation',()=>{let p=G.parsePath('M1e2 -2.3e-1 L3E+2 1e1');assert.equal(p[0].points[0].x,100);assert.equal(p[0].points[1].x,300);});
+test('path round trip preserves cubic data',()=>{let p=G.parsePath('M0 0C10 0 20 10 20 20L0 20Z');assert.equal(G.pathsToD(G.parsePath(G.pathsToD(p))),G.pathsToD(p));});
+test('adaptive flattening becomes finer',()=>{let p=G.parsePath('M0 0C0 100 100 100 100 0');assert.ok(G.flatten(p,.1)[0].points.length>G.flatten(p,4)[0].points.length);});
+for(const [op,expected] of [['union',150],['intersect',50],['subtract',50],['xor',100]])test('boolean '+op,()=>{let p=G.booleanPaths(rect(0,0,10,10),rect(5,0,10,10),op);assert.ok(Math.abs(area(G.tessellate(p))-expected)<1e-4);});
+test('boolean subtract creates a hole',()=>{let p=G.booleanPaths(rect(0,0,100,100),rect(20,20,60,60),'subtract');assert.equal(area(G.tessellate(p)),6400);});
+test('boolean identical contours',()=>{assert.equal(area(G.tessellate(G.booleanPaths(rect(0,0,10,10),rect(0,0,10,10),'union'))),100);assert.equal(G.booleanPaths(rect(0,0,10,10),rect(0,0,10,10),'subtract').length,0);});
+test('butt stroke area',()=>assert.equal(area(G.strokeMesh([{closed:false,points:[G.pt(0,0),G.pt(10,0)]}],2,'bevel','butt')),20));
+test('square stroke area',()=>assert.equal(area(G.strokeMesh([{closed:false,points:[G.pt(0,0),G.pt(10,0)]}],2,'bevel','square')),24));
+test('stroke joins do not overlap in final mesh',()=>{let m=G.strokeMesh([{closed:false,points:[G.pt(0,0),G.pt(10,0),G.pt(10,10)]}],2,'bevel','butt');assert.ok(area(m)>35&&area(m)<40);});
+test('BVH spatial query',()=>{let idx=new G.SpatialIndex(Array.from({length:100},(_,i)=>({id:i,bounds:{x:i*10,y:0,x2:i*10+5,y2:5}})));assert.deepEqual(idx.query({x:101,y:1,x2:112,y2:2}).map(i=>i.id),[10,11]);});
+test('malformed SVG is rejected',()=>assert.throws(()=>G.parsePath('M10 Q2')));
+test('de Casteljau split agrees with original cubic',()=>{const ps=[G.pt(0,0),G.pt(0,100),G.pt(100,100),G.pt(100,0)],t=.37,[a,b]=G.splitCubic(...ps,t);assert.ok(G.dist(a[3],G.cubic(...ps,t))<1e-10);assert.ok(G.dist(G.cubic(...a,.5),G.cubic(...ps,t*.5))<1e-8);});

@@ -1,0 +1,201 @@
+{
+  "format": "vectora",
+  "version": 1,
+  "name": "Browser test",
+  "colorSpace": "sRGB",
+  "artboards": [
+    {
+      "id": "board1",
+      "name": "Artboard 1",
+      "x": 0,
+      "y": 0,
+      "w": 1000,
+      "h": 700,
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "board_c00c7b63-f5b2-4884-a7f6-cb192949052a",
+      "name": "Artboard 2",
+      "x": 1070,
+      "y": 0,
+      "w": 1000,
+      "h": 700,
+      "background": "#FFFFFF"
+    }
+  ],
+  "layers": [
+    {
+      "id": "artwork",
+      "name": "Layer 1",
+      "color": "#7BA9FA",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "layer_5845dfcb-0c88-49b0-a522-d6a1a0a98ad2",
+      "name": "Layer 2",
+      "color": "#7BA9FA",
+      "visible": true,
+      "locked": false
+    }
+  ],
+  "nodes": [
+    {
+      "id": "n_73074afe-ac69-4869-be73-2a62a3e9f234",
+      "type": "rect",
+      "name": "Rect",
+      "matrix": [
+        1,
+        0,
+        0,
+        1,
+        100,
+        100
+      ],
+      "fill": "#EB713F",
+      "stroke": "none",
+      "strokeWidth": 2,
+      "opacity": 1,
+      "visible": true,
+      "locked": false,
+      "fillRule": "nonzero",
+      "lineJoin": "round",
+      "lineCap": "round",
+      "layerId": "artwork",
+      "artboardId": "board1",
+      "w": 160,
+      "h": 130,
+      "radius": 0,
+      "sides": 5,
+      "innerRatio": 0.45,
+      "groupId": "group_03d18fc8-4f57-4ca7-baa8-410e3bfb9d01"
+    },
+    {
+      "id": "n_713dfa8a-398f-45de-89d5-c80270d9d6f6",
+      "type": "ellipse",
+      "name": "Ellipse",
+      "matrix": [
+        1,
+        0,
+        0,
+        1,
+        200,
+        130
+      ],
+      "fill": "#EB713F",
+      "stroke": "none",
+      "strokeWidth": 2,
+      "opacity": 1,
+      "visible": true,
+      "locked": false,
+      "fillRule": "nonzero",
+      "lineJoin": "round",
+      "lineCap": "round",
+      "layerId": "artwork",
+      "artboardId": "board1",
+      "w": 150,
+      "h": 130,
+      "radius": 0,
+      "sides": 5,
+      "innerRatio": 0.45,
+      "groupId": "group_03d18fc8-4f57-4ca7-baa8-410e3bfb9d01"
+    },
+    {
+      "id": "n_67423641-c351-4f5b-9f5e-5a7f7cb5b35a",
+      "type": "rect",
+      "name": "Rect copy",
+      "matrix": [
+        1,
+        0,
+        0,
+        1,
+        150,
+        130
+      ],
+      "fill": "#EB713F",
+      "stroke": "none",
+      "strokeWidth": 2,
+      "opacity": 1,
+      "visible": true,
+      "locked": false,
+      "fillRule": "nonzero",
+      "lineJoin": "round",
+      "lineCap": "round",
+      "layerId": "artwork",
+      "artboardId": "board1",
+      "w": 160,
+      "h": 130,
+      "radius": 0,
+      "sides": 5,
+      "innerRatio": 0.45,
+      "groupId": "group_5c1979ab-7b7f-40ee-bfea-e564940905ea"
+    },
+    {
+      "id": "n_ea629596-db36-46c1-aaa1-90e34802de05",
+      "type": "ellipse",
+      "name": "Ellipse copy",
+      "matrix": [
+        1,
+        0,
+        0,
+        1,
+        250,
+        160
+      ],
+      "fill": "#EB713F",
+      "stroke": "none",
+      "strokeWidth": 2,
+      "opacity": 1,
+      "visible": true,
+      "locked": false,
+      "fillRule": "nonzero",
+      "lineJoin": "round",
+      "lineCap": "round",
+      "layerId": "artwork",
+      "artboardId": "board1",
+      "w": 150,
+      "h": 130,
+      "radius": 0,
+      "sides": 5,
+      "innerRatio": 0.45,
+      "groupId": "group_5c1979ab-7b7f-40ee-bfea-e564940905ea"
+    },
+    {
+      "id": "n_e4bb9f3a-79a8-4280-be24-fbb8cb485911",
+      "type": "rect",
+      "name": "Rect copy",
+      "matrix": [
+        1,
+        0,
+        0,
+        1,
+        120,
+        120
+      ],
+      "fill": "#EB713F",
+      "stroke": "none",
+      "strokeWidth": 2,
+      "opacity": 1,
+      "visible": true,
+      "locked": false,
+      "fillRule": "nonzero",
+      "lineJoin": "round",
+      "lineCap": "round",
+      "layerId": "artwork",
+      "artboardId": "board1",
+      "w": 160,
+      "h": 130,
+      "radius": 0,
+      "sides": 5,
+      "innerRatio": 0.45,
+      "groupId": "group_7383b30e-9088-413f-88d5-cb6ccce40323"
+    }
+  ],
+  "guides": [
+    {
+      "id": "guide_084a958a-b1f4-4b53-b88c-244338c015ce",
+      "axis": "y",
+      "value": 300
+    }
+  ]
+}

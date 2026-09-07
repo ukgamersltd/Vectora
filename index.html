@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#242527">
+<meta name="description" content="Vectora — a local-first vector design studio with an actual WebGPU renderer and editable vector artwork.">
+<title>Vectora — Vector Design Studio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ed855e'/%3E%3Cpath d='M6 8h5l5 14 5-14h5L18 26h-4z' fill='%23232323'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+<header class="menubar">
+ <button class="brand" data-cmd="about" title="About Vectora"><span class="brand-mark"><svg viewBox="0 0 28 28"><path d="M4 6h5l5 14 5-14h5l-8 19h-4z" fill="currentColor"/></svg></span><span>Vectora<span class="brand-dot">.</span></span></button>
+ <nav id="menus" aria-label="Main menu"></nav>
+ <div class="menu-spacer"></div>
+ <span id="save-state" class="save-state"><span class="save-dot"></span>Local-first workspace</span>
+ <button class="icon-button" data-cmd="palette" title="Search commands (Ctrl/⌘ K)" data-icon="search"></button>
+ <button class="icon-button" data-cmd="theme" title="Switch light / dark appearance" data-icon="sun"></button>
+ <span class="header-divider"></span><button class="export-top" data-cmd="export"><span data-icon="export"></span>Export<span data-icon="chevronDown"></span></button>
+</header>
+<div class="controlbar">
+ <span id="context-type" class="context-type">No selection</span><span class="divider"></span>
+ <button class="paint-button" id="top-fill" title="Fill color"><span class="paint-chip" id="top-fill-chip"></span><span data-icon="chevronDown"></span></button>
+ <button class="paint-button" id="top-stroke" title="Stroke color"><span class="paint-chip stroke-chip" id="top-stroke-chip"></span><span data-icon="chevronDown"></span></button>
+ <label class="inline-label">Stroke <input id="top-stroke-width" type="number" value="2" min="0" max="2000" step=".5" aria-label="Stroke width"><span class="dim">px</span></label>
+ <span class="divider"></span><label class="inline-label">Opacity <input id="top-opacity" type="number" min="0" max="100" value="100" aria-label="Object opacity"><span class="dim">%</span></label>
+ <span class="divider optional"></span><div class="align-strip optional"><button class="icon-button" data-cmd="align-left" title="Align left" data-icon="alignLeft"></button><button class="icon-button" data-cmd="align-center" title="Align horizontal centers" data-icon="alignCenter"></button><button class="icon-button" data-cmd="align-right" title="Align right" data-icon="alignRight"></button></div>
+ <span class="menu-spacer"></span><button class="quiet-button optional" data-cmd="setup">Document setup</button><span class="divider"></span><button class="workspace-button" data-cmd="workspace">Essentials <span data-icon="chevronDown"></span></button>
+</div>
+<div class="main-layout">
+ <aside class="tools" aria-label="Drawing tools"><div class="tool-collapse" data-icon="chevrons"></div><div id="tool-grid" class="tool-grid"></div><div class="tool-rule"></div>
+ <div class="paint-stack"><button id="tool-stroke" title="Stroke color" class="stack-stroke"></button><button id="tool-fill" title="Fill color" class="stack-fill"></button><button class="swap" data-cmd="swap-paint" title="Swap fill and stroke (Shift X)" data-icon="swap"></button><button class="defaults" data-cmd="default-paint" title="Default fill and stroke (D)" data-icon="defaultPaint"></button></div>
+ <div class="mini-paints"><button data-cmd="solid" title="Solid fill" class="solid-mini"></button><button data-cmd="gradient" title="Gradient fill" class="gradient-mini"></button><button data-cmd="no-fill" title="No fill" class="none-mini"></button></div>
+ <div class="tool-rule"></div><button class="tool-button solo" data-cmd="outline" title="Toggle outline view (Ctrl/⌘ Y)" data-icon="outline"></button><button class="tool-button solo" data-cmd="shortcuts" title="Keyboard shortcuts" data-icon="more"></button>
+ <div class="tools-bottom"><span class="tiny-label">V / 01</span></div></aside>
+ <section class="document-area" aria-label="Document workspace">
+ <div class="document-tabs"><button class="document-tab active" id="document-tab" title="Rename document"><span class="tab-icon" data-icon="file"></span><span id="document-title">Form &amp; Feeling</span><span id="document-mode">@ 75% (RGB / Preview)</span><span class="tab-dot"></span></button><button class="tab-new" data-cmd="new" title="New document" data-icon="plus"></button><span class="menu-spacer"></span><button class="tab-fit" data-cmd="fit-all" title="Fit all artboards (Ctrl/⌘ Alt 0)" data-icon="fit"></button></div>
+ <div id="stage" class="stage">
+  <canvas id="background" aria-hidden="true"></canvas><canvas id="gpu" aria-hidden="true"></canvas><canvas id="fallback" aria-hidden="true" hidden></canvas><canvas id="overlay" tabindex="0" aria-label="Vector artwork editor. V selects, P draws paths, M draws rectangles, Space pans."></canvas>
+  <textarea id="text-editor" spellcheck="false" aria-label="Edit text on canvas" hidden></textarea>
+  <div id="selection-toolbar" class="selection-toolbar" hidden><span id="selection-count">1 object</span><span class="divider"></span><button data-cmd="group" title="Group" data-icon="group"></button><button data-cmd="duplicate" title="Duplicate" data-icon="copy"></button><button data-cmd="front" title="Bring to front" data-icon="front"></button><button data-cmd="delete" title="Delete" data-icon="trash"></button></div>
+  <button class="canvas-hint" id="canvas-hint" data-cmd="shortcuts"><kbd>V</kbd> Select <span>·</span><kbd>P</kbd> Pen <span>·</span><kbd>Space</kbd> Pan</button>
+  <div class="canvas-controls"><button data-cmd="zoom-out" title="Zoom out" data-icon="minus"></button><button data-cmd="fit-all" title="Fit all artboards" data-icon="fit"></button><button data-cmd="zoom-in" title="Zoom in" data-icon="plus"></button></div>
+  <div id="drop-overlay" hidden><span data-icon="import"></span><strong>Drop your artwork here</strong><span>SVG, PNG, JPEG, WebP, or .vectora</span></div>
+ </div>
+ </section>
+ <aside class="panel-rail" aria-label="Panel shortcuts"><button data-tab="properties" title="Properties" data-icon="sliders" class="active"></button><button data-tab="layers" title="Layers" data-icon="layers"></button><button data-tab="history" title="History" data-icon="history"></button><div class="rail-rule"></div><button data-cmd="focus-type" title="Character" data-icon="type"></button><button data-cmd="focus-swatches" title="Swatches" data-icon="swatches"></button><button data-cmd="focus-pathfinder" title="Pathfinder" data-icon="union"></button><div class="menu-spacer"></div><button data-cmd="diagnostics" title="Renderer diagnostics" data-icon="gpu"></button></aside>
+ <aside class="inspector" aria-label="Inspector">
+  <div class="panel-tabs"><button data-tab="properties" class="active">Properties</button><button data-tab="layers">Layers</button><button data-tab="history">History</button></div>
+  <div id="properties-panel" class="panel-content"></div>
+  <div id="layers-panel" class="panel-content" hidden><div class="layer-search"><span data-icon="search"></span><input id="layer-search" placeholder="Find an object…" aria-label="Search layers"></div><div id="layers-tree"></div><div class="layer-actions"><span id="layer-count"></span><span class="menu-spacer"></span><button class="icon-button" data-cmd="new-layer" title="New layer" data-icon="plus"></button><button class="icon-button" data-cmd="delete" title="Delete selected objects" data-icon="trash"></button></div></div>
+  <div id="history-panel" class="panel-content" hidden></div>
+  <div class="inspector-footer"><span class="private-icon" data-icon="shield"></span>Your artwork stays on this device.</div>
+ </aside>
+</div>
+<footer class="statusbar"><span class="status-tool" id="status-tool">Selection</span><span class="divider"></span><select id="zoom-select" aria-label="Zoom"><option>75%</option></select><span class="divider"></span><button class="status-icon" data-cmd="prev-board" title="Previous artboard" data-icon="chevronLeft"></button><select id="board-select" aria-label="Active artboard"></select><button class="status-icon" data-cmd="next-board" title="Next artboard" data-icon="chevronRight"></button><span class="status-description" id="status-description">Click to select. Drag to move. Shift to add to selection.</span><span class="menu-spacer"></span><button id="renderer-badge" data-cmd="diagnostics"><span class="engine-dot"></span><span id="renderer-name">Initializing</span></button><span id="status-stats">—</span></footer>
+</div>
+<div id="menu-popover" class="menu-popover" role="menu" hidden></div>
+<div id="color-popover" class="color-popover" hidden></div>
+<div id="toast-region" aria-live="polite"></div>
+<input id="file-input" type="file" accept=".vectora,.json,.svg,image/png,image/jpeg,image/webp,image/gif" hidden>
+<dialog id="modal"><div id="modal-content"></div></dialog>
+<script src="src/geometry.js"></script><script src="src/document.js"></script><script src="src/renderer.js"></script><script src="src/io.js"></script><script src="src/icons.js"></script><script src="src/editor.js"></script><script src="src/app.js"></script>
+</body></html>

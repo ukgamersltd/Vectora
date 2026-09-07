@@ -1,0 +1,13 @@
+{
+  "standaloneStartup": "passed",
+  "noExternalCodeOrStyles": "passed",
+  "noThirdPartyRequests": "passed",
+  "embeddedBlobWorker": "passed",
+  "forcedWebGPUVertices": 11172,
+  "opaqueOriginFallback": "passed",
+  "defaultBackend": {
+    "mode": "Canvas 2D",
+    "reason": "Software GPU detected (google \u00b7 swiftshader). Canvas 2D is preferred for interactive use. Add ?renderer=webgpu to explicitly test the software WebGPU backend."
+  },
+  "errors": []
+}

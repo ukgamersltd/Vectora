@@ -1,0 +1,17 @@
+{
+  "name": "vectora-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Dependency-free Illustrator-inspired vector editor with a WebGPU backend.",
+  "license": "MIT",
+  "scripts": {
+    "start": "python3 serve.py",
+    "build": "python3 tools/build.py",
+    "test": "node tools/check-syntax.cjs && node --test tests/*.test.cjs",
+    "test:browser": "python3 tests/browser.test.py",
+    "test:standalone": "python3 tests/standalone.test.py"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

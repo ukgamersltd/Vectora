@@ -1,0 +1,129 @@
+{
+  "browser": "Chromium",
+  "results": [
+    {
+      "name": "Application starts with 38 editable objects and three artboards",
+      "status": "passed"
+    },
+    {
+      "name": "New document through File menu and modal",
+      "status": "passed"
+    },
+    {
+      "name": "Rectangle tool creates actual geometry",
+      "status": "passed"
+    },
+    {
+      "name": "Pointer move and keyboard undo/redo",
+      "status": "passed"
+    },
+    {
+      "name": "Bounding-box resize transforms vector objects",
+      "status": "passed"
+    },
+    {
+      "name": "Inspector swatches and numeric transformation",
+      "status": "passed"
+    },
+    {
+      "name": "Direct selection edits a B\u00e9zier anchor",
+      "status": "passed"
+    },
+    {
+      "name": "Pen tool creates and closes a cubic path",
+      "status": "passed"
+    },
+    {
+      "name": "Live text creation, browser shaping, and commit",
+      "status": "passed"
+    },
+    {
+      "name": "Gradient editing changes the retained paint model",
+      "status": "passed"
+    },
+    {
+      "name": "Pathfinder union and undo restore both source objects",
+      "status": "passed"
+    },
+    {
+      "name": "Alt-drag duplicates a group without breaking group membership",
+      "status": "passed"
+    },
+    {
+      "name": "Layers panel and visibility participate in history",
+      "status": "passed"
+    },
+    {
+      "name": "Dragging a ruler creates a persistent guide",
+      "status": "passed"
+    },
+    {
+      "name": "Artboard creation and camera fitting",
+      "status": "passed"
+    },
+    {
+      "name": "Internal clipboard copies and pastes editable objects",
+      "status": "passed"
+    },
+    {
+      "name": "SVG parser omits scripts, foreignObject, and remote images",
+      "status": "passed"
+    },
+    {
+      "name": "Opt-in native SVG round trip and metadata-free ordinary export",
+      "status": "passed"
+    },
+    {
+      "name": "SVG export downloads a valid vector file",
+      "status": "passed"
+    },
+    {
+      "name": "PNG export produces expected pixel dimensions",
+      "status": "passed"
+    },
+    {
+      "name": "Native source save preserves editable document",
+      "status": "passed"
+    },
+    {
+      "name": "IndexedDB autosave survives a reload",
+      "status": "passed"
+    },
+    {
+      "name": "Light theme and compact workspace remain usable",
+      "status": "passed"
+    },
+    {
+      "name": "Searchable command palette",
+      "status": "passed"
+    },
+    {
+      "name": "Real WebGPU pipelines, worker meshes, textures, and nonempty GPU pixel readback",
+      "status": "passed"
+    },
+    {
+      "name": "GPU editing and undo submit fresh geometry",
+      "status": "passed"
+    },
+    {
+      "name": "Device loss switches explicitly to functioning Canvas renderer",
+      "status": "passed"
+    },
+    {
+      "name": "No uncaught JavaScript errors during browser tests",
+      "status": "passed"
+    }
+  ],
+  "errors": [],
+  "webgpu": {
+    "vertices": 31272,
+    "draws": 38,
+    "adapter": "google \u00b7 swiftshader",
+    "worker": true,
+    "nontransparentPixels": 137752,
+    "backend": "software Vulkan / SwiftShader"
+  },
+  "version": "144.0.7559.96",
+  "passed": 28,
+  "failed": 0
+}

